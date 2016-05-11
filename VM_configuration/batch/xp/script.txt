@@ -1,0 +1,13 @@
+select disk 1
+create partition primary
+assign letter=e
+
+select disk 2
+create partition primary
+assign letter=f
+
+select disk 3
+create partition primary
+assign letter=g
+exit
+

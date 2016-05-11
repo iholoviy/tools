@@ -1,0 +1,13 @@
+select disk 7
+online disk noerr
+attributes disk clear readonly
+create partition primary
+format fs=ntfs label=SG4Logs unit=2048 quick
+assign mount=h:\Logs\SG4
+select disk 8
+online disk noerr
+attributes disk clear readonly
+create partition primary
+format fs=ntfs label=SG4 unit=1024 quick
+assign mount=h:\data\SG4
+exit

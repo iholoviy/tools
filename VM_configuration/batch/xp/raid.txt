@@ -1,0 +1,9 @@
+select disk 18
+convert dynamic
+select disk 19
+convert dynamic
+select disk 20
+convert dynamic
+
+create volume raid disk=18,19,20
+assign letter=W

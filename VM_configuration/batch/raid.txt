@@ -1,0 +1,16 @@
+select disk 18
+online disk noerr
+attributes disk clear readonly
+CONVERT dynamic
+select disk 19
+online disk noerr
+attributes disk clear readonly
+CONVERT dynamic
+select disk 20
+online disk noerr
+attributes disk clear readonly
+CONVERT dynamic
+CREATE VOLUME raid Disk=18,19,20
+format fs=ntfs label=raid5
+assign
+

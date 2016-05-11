@@ -1,0 +1,64 @@
+
+select disk 9
+create partition primary
+assign letter=R
+
+select disk 10
+convert dynamic
+create volume simple Disk=10
+assign letter I
+select disk 11
+convert dynamic
+select volume I:
+add disk 11
+
+select disk 12
+convert dynamic
+create volume simple Disk=12
+assign letter=K
+select disk 13
+convert dynamic
+select volume K:
+extend disk 13
+
+
+select disk 14
+convert dynamic
+select disk 15
+convert dynamic
+create volume stripe disk=14,15
+assign letter=L
+
+
+select disk 16
+convert dynamic
+create volume simple Disk=16
+assign letter=M
+
+select disk 17
+CREATE PARTITION Primary Size=512
+assign letter=N
+
+CREATE PARTITION Primary Size=512
+assign letter=O
+
+CREATE PARTITION Primary Size=512
+assign letter=P
+ 
+CREATE PARTITION Extended Size=3549
+CREATE PARTITION logical Size=512
+assign letter=Q
+ 
+CREATE PARTITION logical Size=512
+assign letter=S
+
+CREATE PARTITION logical Size=512
+assign letter=T
+
+CREATE PARTITION logical Size=512
+assign letter=U
+
+CREATE PARTITION logical Size=512
+assign letter=V
+
+exit

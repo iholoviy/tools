@@ -1,0 +1,19 @@
+select disk 1
+online disk noerr
+attributes disk clear readonly
+create partition primary
+format fs=ntfs label=exchange unit=4096 quick
+assign letter=e
+select disk 2
+online disk noerr
+attributes disk clear readonly
+create partition primary
+format fs=ntfs label=SG12Logs unit=512 quick
+assign letter=f
+select disk 3
+online disk noerr
+attributes disk clear readonly
+create partition primary
+format fs=ntfs label=SG12 unit=8192 quick
+assign letter=g
+exit

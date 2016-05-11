@@ -1,0 +1,8 @@
+select disk 4
+create partition primary
+assign mount=f:\StorageGroup3
+
+select disk 5
+create partition primary
+assign mount=g:\StorageGroup3
+exit

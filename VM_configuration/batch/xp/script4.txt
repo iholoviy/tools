@@ -1,0 +1,7 @@
+select disk 7
+create partition primary
+assign mount=h:\Logs\SG4
+select disk 8
+create partition primary
+assign mount=h:\data\SG4
+exit

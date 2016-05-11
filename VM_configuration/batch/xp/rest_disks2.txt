@@ -1,0 +1,31 @@
+select disk 17
+
+ CREATE PARTITION Primary Size=512
+assign letter=N
+
+ CREATE PARTITION Primary Size=512
+assign letter=O
+
+ CREATE PARTITION Primary Size=512
+
+assign letter=P
+ 
+ CREATE PARTITION Extended Size=3549
+ CREATE PARTITION logical Size=512
+assign letter=Q
+  
+
+ CREATE PARTITION logical Size=512
+assign letter=S
+ 
+
+ CREATE PARTITION logical Size=512
+assign letter=T
+
+ CREATE PARTITION logical Size=512
+  assign letter=U
+
+CREATE PARTITION logical Size=512
+   assign letter=V
+
+exit

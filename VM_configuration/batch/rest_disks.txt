@@ -1,0 +1,83 @@
+
+select disk 9
+online disk noerr
+attributes disk clear readonly
+CONVERT dynamic
+select disk 10
+online disk noerr
+attributes disk clear readonly
+CONVERT dynamic
+CREATE VOLUME Stripe Disk=9,10
+format fs=ntfs label=Stripe quick
+assign
+
+select disk 11
+online disk noerr
+attributes disk clear readonly
+CONVERT dynamic
+select disk 12
+online disk noerr
+attributes disk clear readonly
+CONVERT dynamic
+create volume simple disk=11
+add disk 12
+format fs=ntfs label=mirror quick
+assign
+
+select disk 13
+online disk noerr
+attributes disk clear readonly
+CONVERT dynamic
+select disk 14
+online disk noerr
+attributes disk clear readonly
+CONVERT dynamic
+create volume simple disk=13
+extend disk 14
+format fs=ntfs label=spanned quick
+assign
+
+select disk 15
+online disk noerr
+attributes disk clear readonly
+CONVERT dynamic
+create volume simple disk=15
+format fs=ntfs label=simple quick
+assign
+
+
+select disk 16
+online disk noerr
+attributes disk clear readonly
+ CREATE PARTITION Primary Size=512
+ format fs=ntfs label=primary1 quick
+
+ CREATE PARTITION Primary Size=512
+ format fs=ntfs label=primary2 quick
+
+ CREATE PARTITION Primary Size=512
+ format fs=ntfs label="" quick
+
+ 
+ CREATE PARTITION Extended Size=3549
+ CREATE PARTITION logical Size=512
+   format fs=ntfs label=logical1 quick
+
+ CREATE PARTITION logical Size=512
+   format fs=ntfs label="" quick
+
+ CREATE PARTITION logical Size=512
+   format fs=ntfs label=logical3 quick
+
+ CREATE PARTITION logical Size=512
+   format fs=ntfs label=logical4 quick
+
+CREATE PARTITION logical Size=512
+  format fs=ntfs label=logical5 quick
+
+ select PARTITION 2
+ delete PARTITION
+  select PARTITION 4
+ delete PARTITION
+  select PARTITION 6
+ delete PARTITION

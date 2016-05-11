@@ -1,0 +1,24 @@
+select disk 17
+select PARTITION 2
+delete PARTITION
+select PARTITION 4
+delete PARTITION
+select PARTITION 6
+delete PARTITION
+
+select volume N:
+remove letter=N
+
+select volume P:
+remove letter=P
+
+select volume S:
+remove letter=S
+
+select volume U:
+remove letter=U
+
+
+select volume V:
+remove letter=V
+

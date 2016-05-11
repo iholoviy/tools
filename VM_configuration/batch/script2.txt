@@ -1,0 +1,19 @@
+select disk 4
+online disk noerr
+attributes disk clear readonly
+create partition primary
+format fs=ntfs label=SG3Logs unit=65536 quick
+assign mount=f:\StorageGroup3
+select disk 5
+online disk noerr
+attributes disk clear readonly
+create partition primary
+format fs=ntfs label=SG3Logs unit=32768 quick
+assign mount=g:\StorageGroup3
+select disk 6
+online disk noerr
+attributes disk clear readonly
+create partition primary
+format fs=ntfs unit=16384 quick
+assign letter=h
+exit

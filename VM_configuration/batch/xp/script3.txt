@@ -1,0 +1,4 @@
+select disk 6
+create partition primary
+assign letter=h
+exit
