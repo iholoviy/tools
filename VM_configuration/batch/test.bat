@@ -148,9 +148,9 @@ echo Static IP Address:
 set /p IP_Addr=
 
 echo Setting Static IP Information... 
-netsh interface ip set address name="Local Area Connection" static %IP_Addr% 255.255.0.0 10.10.10.99  1 >nul
-netsh interface ip set dns "Local Area Connection" static 10.10.10.23 >nul
-netsh interface ip add dns "Local Area Connection" 10.10.10.10 >nul
+netsh interface ip set address name="Local Area Connection 100" static %IP_Addr% 255.255.0.0 10.10.10.99  1 >nul
+netsh interface ip set dns "Local Area Connection 100" static 10.10.10.23 >nul
+netsh interface ip add dns "Local Area Connection 100" 10.10.10.10 >nul
 
 ECHO Here are the new settings for %computername%: 
 netsh int ip show config
@@ -273,9 +273,9 @@ echo Static IP Address:
 set /p IP_Addr=
 
 echo Setting Static IP Information... 
-netsh interface ip set address name="Local Area Connection" source=static addr=%IP_Addr% mask=255.255.0.0 gateway=10.10.10.99  >nul
-netsh interface ip set dns "Local Area Connection" static 10.10.10.23 >nul
-netsh interface ip add dns "Local Area Connection" 10.10.10.10 >nul
+netsh interface ip set address name="Local Area Connection 100" source=static addr=%IP_Addr% mask=255.255.0.0 gateway=10.10.10.99  >nul
+netsh interface ip set dns "Local Area Connection 100" static 10.10.10.23 >nul
+netsh interface ip add dns "Local Area Connection 100" 10.10.10.10 >nul
 
 ECHO Here are the new settings for %computername%: 
 netsh int ip show config
