@@ -1,6 +1,6 @@
 ﻿$downloadfolder="C:\installers"
 $limit = (Get-Date).AddDays(-1)
-$arguments = "licensekey=c:\installers\QA.lic /silent"
+$arguments = "licensekey=$env:temp\QA.lic /silent"
 
 Function Download-Core {
 
@@ -39,7 +39,7 @@ foreach( $link in $xml.files.file.content.href){
                 $credCache.Add($dlink, "Basic", $creds)
                 $wc.Credentials = $credCache
                 $wc.DownloadFile($dlink, $output)
-                wget http://iholoviy.s3.amazonaws.com/QA.lic -OutFile C:\installers\QA.lic
+                wget http://iholoviy.s3.amazonaws.com/QA.lic -OutFile $env:temp\QA.lic
                 Write-Host "Dowload completed. Srarting installation"
                 #Remove-Item -Path "C:\ProgramData\AppRecovery\Logs\AppRecoveryInstallation.log" -Force -ErrorAction SilentlyContinue
                 Get-ChildItem -Path $downloadfolder -Recurse -Force | Where-Object { !$_.PSIsContainer -and $_.CreationTime -lt $limit } | Remove-Item -Force
