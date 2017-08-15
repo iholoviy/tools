@@ -1,6 +1,6 @@
 ﻿$downloadfolder="C:\installers"
 $limit = (Get-Date).AddDays(-1)
-$arguments = "licensekey=$env:temp\QA.lic /silent"
+$arguments = "licensekey=$env:temp\QA.lic privacypolicy=accept /silent"
 
 Function Download-Core {
 
