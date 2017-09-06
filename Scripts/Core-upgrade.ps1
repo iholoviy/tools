@@ -10,7 +10,7 @@ $VersionLocal=(Get-Version).Substring(26)
 [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
 $wc=new-object system.net.webclient
 $wc.UseDefaultCredentials = $true
-$wc.Credentials = New-Object System.Net.NetworkCredential("iholoviy","123asdQ!@#")
+$wc.Credentials = New-Object System.Net.NetworkCredential("iholoviy","123asdQ!@#$")
 if ((Test-Path $downloadfolder) -eq 0)
     {
     mkdir $downloadfolder
@@ -35,7 +35,7 @@ foreach( $link in $xml.files.file.content.href){
                 Write-Host "New verion is avaliabe. Dowloading..."
                 #Downloading using basic authentication
                 $credCache = new-object System.Net.CredentialCache
-                $creds = new-object System.Net.NetworkCredential("iholoviy","123asdQ!@#")
+                $creds = new-object System.Net.NetworkCredential("iholoviy","123asdQ!@#$")
                 $credCache.Add($dlink, "Basic", $creds)
                 $wc.Credentials = $credCache
                 $wc.DownloadFile($dlink, $output)
