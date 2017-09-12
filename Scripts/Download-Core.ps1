@@ -5,6 +5,10 @@ $teamcityBranch="https://tc.appassure.com/httpAuth/app/rest/builds/branch:%3Cdef
 $licenseFileUrl="http://host,with.license/QA.lic"
 $arguments = "licensekey=$env:temp\QA.lic privacypolicy=accept /silent"
 
+if ((Test-Path $downloadfolder) -eq 0) {
+    mkdir $downloadfolder
+}
+
 Function Download-Core {
     $limit = (Get-Date).AddDays(-1)
     $VersionLocal=(Get-Version).Substring(26)
