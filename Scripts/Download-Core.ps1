@@ -2,7 +2,7 @@ $username="iholoviy"
 $password="password"
 $downloadFolder="C:\installers"
 $teamcityBranch="https://tc.appassure.com/httpAuth/app/rest/builds/branch:%3Cdefault%3E,status:SUCCESS,buildType:AppAssure_Windows_Develop20_FullBuild/artifacts/children/installers"
-$licenseFileUrl="http://host,with.license/QA.lic"
+$licenseFileUrl="http://host.with.license/QA.lic"
 $arguments = "licensekey=$env:temp\QA.lic privacypolicy=accept /silent"
 
 if ((Test-Path $downloadfolder) -eq 0) {
