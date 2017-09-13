@@ -1,15 +1,29 @@
 $username="iholoviy"
 $password="password"
 $downloadFolder="C:\installers"
-$teamcityBranch="https://tc.appassure.com/httpAuth/app/rest/builds/branch:%3Cdefault%3E,status:SUCCESS,buildType:AppAssure_Windows_Develop20_FullBuild/artifacts/children/installers"
-$licenseFileUrl="http://host.with.license/QA.lic"
+$release7="https://tc.appassure.com/httpAuth/app/rest/builds/branch:%3Cdefault%3E,status:SUCCESS,buildType:AppAssure_Windows_Release700_FullBuild/artifacts/children/installers"
+$develop="https://tc.appassure.com/httpAuth/app/rest/builds/branch:%3Cdefault%3E,status:SUCCESS,buildType:AppAssure_Windows_Develop20_FullBuild/artifacts/children/installers"
+$licenseFileUrl="http://host.with.license.key/QA.lic"
 $arguments = "licensekey=$env:temp\QA.lic privacypolicy=accept /silent"
 
 if ((Test-Path $downloadfolder) -eq 0) {
     mkdir $downloadfolder
 }
 
-Function Download-Core {
+
+Function Download-Core ($branch="develop"){
+    if ($branch -eq "develop") {
+        Write-Host "Going to check develop branch..."
+        $teamcityBranch=$develop
+    }
+    if ($branch -eq "release7") {
+        Write-Host "Going to check release 7.0 branch..."
+        $teamcityBranch=$release7
+    }
+    else {
+        Write-Host "Branch was not specified or specified incorrectly. Will use a develop branch..."
+        $teamcityBranch=$release7
+    }
     $limit = (Get-Date).AddDays(-1)
     $VersionLocal=(Get-Version).Substring(26)
     
@@ -19,14 +33,14 @@ Function Download-Core {
     $wc.Credentials = New-Object System.Net.NetworkCredential($username,$password)
     [xml]$xml = $wc.DownloadString($teamcityBranch)
     
-    foreach( $link in $xml.files.file.content.href) {
+foreach( $link in $xml.files.file.content.href) {
         if ($link -like '*Core-X*') {
-            $myMatch = ".*installers\/(.*-([\d.]+).exe)"  > $null
+            $myMatch = ".*installers\/(.*-([\d.]+).exe)"
             $link -match $myMatch | out-null
             $installer=$($Matches[1])
             $version=$($Matches[2])
             if ($VersionLocal -lt $version) {
-                Write-Host "Teamcity has latest installer with $version which is newer than installed $VersionLocal. Downloading..."
+                Write-Host "Teamcity has latest installer with $version which is newer than installed $VersionLocal. Downloading new version..."
                 $dlink="https://tc.appassure.com" + $link
                 $output=Join-Path $downloadfolder -ChildPath $installer
                 $credCache = new-object System.Net.CredentialCache
@@ -42,9 +56,13 @@ Function Download-Core {
                 Exit
             }
             else {
-                Write-host "There is no newer verion Teamcity"  
+                Write-host "There is no newer verion on Teamcity. Installed version $VersionLocal is the same or newer than $version which is on Teamcity"  
             }
         }
     }
 }
-Download-Core
+Download-Core -branch release7
+                
+                
+                
+          
